@@ -27,6 +27,12 @@ $app = new Laravel\Lumen\Application(
 
 // $app->withEloquent();
 
+// CORS
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
+$app->configure('cors');
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
