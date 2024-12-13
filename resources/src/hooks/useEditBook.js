@@ -23,7 +23,7 @@ const useEditBook = () => {
                 Swal.fire({
                     icon: "success",
                     title: "Berhasil",
-                    text: "Buku berhasil diperbarui!",
+                    text: "Berhasil mengedit data!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
@@ -38,20 +38,13 @@ const useEditBook = () => {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Failed to add data!",
+                    text: "Gagal mengedit data!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
             }
         } catch (error) {
-            console.error("Error adding book:", error);
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Something went wrong!",
-                showConfirmButton: false,
-                timer: 2000,
-            });
+            console.error(error);
         } finally {
             setLoading(false);
         }

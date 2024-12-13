@@ -22,7 +22,7 @@ const useAddBook = () => {
                 Swal.fire({
                     icon: "success",
                     title: "Berhasil",
-                    text: "Data ditambahkan!",
+                    text: "Berhasil menambahkan data!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
@@ -31,14 +31,16 @@ const useAddBook = () => {
                 setTimeout(() => {
                     window.location.reload();
                 }, 1000);
-            } else {
+            } else if (response.status === 422) {
                 Swal.fire({
                     icon: "error",
-                    title: "Oops...",
-                    text: "Gagal menambahkan data!",
+                    title: "Gagal",
+                    text: "Anda belum mengisi semua data!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
+                setLoading(false);
+                return;
             }
         } catch (error) {
             console.error(error);

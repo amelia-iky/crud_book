@@ -26,7 +26,7 @@ const useFetchBook = () => {
                     Swal.fire({
                         icon: "success",
                         title: "Berhasil",
-                        text: "Data tersedia!",
+                        text: "Berhasil mengambil data!",
                         showConfirmButton: false,
                         timer: 2000,
                     });
@@ -36,7 +36,7 @@ const useFetchBook = () => {
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "Data kosong!",
+                        text: "Data tidak ditemukan!",
                         showConfirmButton: false,
                         timer: 2000,
                     });

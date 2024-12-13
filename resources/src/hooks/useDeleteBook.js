@@ -23,7 +23,7 @@ const useDeleteBook = () => {
                 Swal.fire({
                     icon: "success",
                     title: "Berhasil",
-                    text: "Data dihapus!",
+                    text: "Berhasil menghapus data!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
