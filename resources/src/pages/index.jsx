@@ -5,16 +5,15 @@ import Footer from "../components/Footer";
 const Home = () => {
     return (
         <>
-            <div className="bg-primary-custom flex flex-col h-full">
+            <div className="flex flex-col">
                 <div className="flex flex-row justify-between">
-                    <div className="bg-primary-dark w-3/12 h-4/5 rounded-xl ml-4 mt-3">
+                    <div className="bg-primary-dark rounded-xl w-3/12 h-full m-5">
                         <Profile />
                     </div>
                     <div className="w-screen">
                         <Table />
                     </div>
                 </div>
-
                 <Footer />
             </div>
         </>
