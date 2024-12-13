@@ -22,8 +22,8 @@ const useDeleteBook = () => {
             if (response.status === 200) {
                 Swal.fire({
                     icon: "success",
-                    title: "Success",
-                    text: "Book deleted successfully!",
+                    title: "Berhasil",
+                    text: "Data dihapus!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
@@ -32,23 +32,21 @@ const useDeleteBook = () => {
                 setBooks((prevBooks) =>
                     prevBooks.filter((book) => book.id !== id)
                 );
+
+                // Update books state
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Book not found!",
+                    text: "Data buku tidak ditemukan",
                     showConfirmButton: false,
                     timer: 2000,
                 });
             }
         } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Failed to delete book. Please try again later.",
-                showConfirmButton: false,
-                timer: 2000,
-            });
             console.error(error);
         } finally {
             setLoading(false);
