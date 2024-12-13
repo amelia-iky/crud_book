@@ -23,7 +23,7 @@ class Book extends Model
 
         static::creating(function ($model) {
             if (empty($model->id)) {
-                $model->id = "book-" . substr((string) Str::uuid(), 0, 5);
+                $model->id = "ID-" . substr((string) Str::uuid(), 0, 5);
             }
         });
     }
