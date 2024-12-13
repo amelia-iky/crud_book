@@ -4,14 +4,13 @@ import { useState } from "react";
 
 const useAddBook = () => {
     const [loading, setLoading] = useState(false);
-    const [shouldReload, setShouldReload] = useState(false);
 
-    const addBook = async (bookData) => {
+    const addBook = async (data) => {
         setLoading(true);
         try {
             const response = await axios.post(
                 "http://localhost:8000/books",
-                bookData,
+                data,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -23,33 +22,32 @@ const useAddBook = () => {
                 Swal.fire({
                     icon: "success",
                     title: "Berhasil",
-                    text: "Buku berhasil ditambahkan!",
+                    text: "Data ditambahkan!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
-                setShouldReload(true);
+
+                // Update books state
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Failed to add data!",
+                    text: "Gagal menambahkan data!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
             }
         } catch (error) {
-            console.error("Error adding book:", error);
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Something went wrong!",
-            });
+            console.error(error);
         } finally {
             setLoading(false);
         }
     };
 
-    return { addBook, loading, shouldReload };
+    return { addBook, loading };
 };
 
 export default useAddBook;
