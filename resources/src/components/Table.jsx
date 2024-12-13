@@ -39,7 +39,7 @@ const TableBook = () => {
     return (
         <>
             <div className="shadow-xl border rounded-lg border-gray-200 text-center my-5 mx-10">
-                <h1 className="text-4xl p-4">Data Buku</h1>
+                <h1 className="text-4xl font-bold p-4">Data Buku</h1>
             </div>
 
             {/* Add book */}
