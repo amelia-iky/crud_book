@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 const useFetchBook = () => {
     const [books, setBooks] = useState();
     const [loading, setLoading] = useState(true);
-    const [shouldReload, setShouldReload] = useState(false);
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -26,20 +25,18 @@ const useFetchBook = () => {
                 if (response.status === 200) {
                     Swal.fire({
                         icon: "success",
-                        title: "Success",
-                        text: "Data fetched successfully!",
+                        title: "Berhasil",
+                        text: "Data tersedia!",
                         showConfirmButton: false,
                         timer: 2000,
                     });
-
-                    setShouldReload(true);
                 }
 
                 if (response.data.length === 0) {
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "Data not found!",
+                        text: "Data kosong!",
                         showConfirmButton: false,
                         timer: 2000,
                     });
@@ -54,7 +51,7 @@ const useFetchBook = () => {
         fetchBook();
     }, []);
 
-    return { books, loading, shouldReload };
+    return { books, loading };
 };
 
 export default useFetchBook;
