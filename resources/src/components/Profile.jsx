@@ -12,8 +12,8 @@ const Profile = () => {
                         className="rounded-full mx-auto w-3/4"
                     />
                 </div>
-                <div className="text-center mx-5 mt-7 mb-10">
-                    <table className="w-full">
+                <table className="text-center mx-5 mt-7 mb-10">
+                    <tbody className="w-full">
                         <tr className="border-b-2">
                             <td className="py-3 px-1">Amelia Rizky Yuniar</td>
                         </tr>
@@ -23,8 +23,8 @@ const Profile = () => {
                         <tr>
                             <td className="py-3 px-1">kelas A</td>
                         </tr>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     );

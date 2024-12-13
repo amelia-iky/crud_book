@@ -33,12 +33,14 @@ const BookForm = ({ book, onClose, onSave }) => {
 
     return (
         <div className="text-center">
-            <h1 className="text-xl mb-5">Isi Data Buku</h1>
+            <h1 className="text-2xl border-b rounded-md shadow-lg mb-5 mx-3">
+                Isi Data Buku
+            </h1>
             <form onSubmit={handleSubmit}>
                 <div className="p-3">
                     <label className="text-gray-700 mr-5">Judul</label>
                     <input
-                        className="h-10 border border-gray-300 rounded-lg"
+                        className="h-10 px-3 border border-gray-300 hover:border-gray-400 rounded-lg"
                         type="text"
                         name="title"
                         value={formData.title}
@@ -49,7 +51,7 @@ const BookForm = ({ book, onClose, onSave }) => {
                 <div className="p-3 border-y">
                     <label className="text-gray-700 mr-5">Penulis</label>
                     <input
-                        className="h-10 border border-gray-300 rounded-lg"
+                        className="h-10 px-3 border border-gray-300 hover:border-gray-400 rounded-lg"
                         type="text"
                         name="author"
                         value={formData.author}
@@ -60,7 +62,7 @@ const BookForm = ({ book, onClose, onSave }) => {
                 <div className="p-3 mb-10 border-b">
                     <label className="text-gray-700 mr-5">Tahun</label>
                     <input
-                        className="h-10 border border-gray-300 rounded-lg"
+                        className="h-10 px-3 border border-gray-300 hover:border-gray-400 rounded-lg"
                         type="number"
                         name="year"
                         value={formData.year}
@@ -75,7 +77,7 @@ const BookForm = ({ book, onClose, onSave }) => {
                     </Button>
 
                     <Button
-                        type="button"
+                        type="submit"
                         variant="edited"
                         onClick={handleSubmit}
                     >

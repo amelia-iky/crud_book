@@ -38,7 +38,7 @@ const TableBook = () => {
 
     return (
         <>
-            <div className="shadow-lg border rounded-lg border-gray-200 text-center my-5 mx-10">
+            <div className="shadow-xl border rounded-lg border-gray-200 text-center my-5 mx-10">
                 <h1 className="text-4xl p-4">Data Buku</h1>
             </div>
 
@@ -58,7 +58,7 @@ const TableBook = () => {
                 {/* Table */}
                 <div className="mt-3 h-full">
                     <table className="border border-gray-200 rounded-lg shadow-md w-full text-center">
-                        <thead>
+                        <thead className="shadow-sm">
                             <tr className="text-sm border-b">
                                 <th className="p-3">No.</th>
                                 <th className="p-3">ID</th>
@@ -77,9 +77,7 @@ const TableBook = () => {
                                         key={book.id}
                                     >
                                         <td className="py-2">
-                                            {startIndex +
-                                                books.indexOf(book) +
-                                                1}
+                                            {books.indexOf(book) + 1}
                                         </td>
                                         <td className="py-2">{book.id}</td>
                                         <td className="py-2">{book.title}</td>
