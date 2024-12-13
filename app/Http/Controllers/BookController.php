@@ -8,23 +8,6 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-    // Create
-    public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string',
-            'author' => 'required|string',
-            'year' => 'required|integer'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-        $book = Book::create($validator->validated());
-        return response()->json($book, 201);
-    }
-
     // Read all
     public function index()
     {
@@ -44,24 +27,53 @@ class BookController extends Controller
         return response()->json($book);
     }
 
-    // Update
-    public function update(Request $request, $id)
+    // Create
+    public function store(Request $request)
     {
-        $book = Book::find($id);
-
-        if(!$book) {
-            return response()->json(['message' => 'Book not found'], 404);
-        }
-
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|string',
             'author' => 'required|string',
             'year' => 'required|integer'
         ]);
 
-        $book->update($validated);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
 
-        return response()->json($book);
+        $book = Book::create($validator->validated());
+        return response()->json($book, 201);
+    }
+
+    // Update
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'year' => 'required|integer|min:1000|max:9999',
+        ]);
+    
+        // Cek apakah validasi gagal
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+    
+        // Data valid
+        $validatedData = $validator->validated();
+    
+        // Temukan buku dan update
+        $book = Book::findOrFail($id);
+        $book->update($validatedData);
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Book updated successfully',
+            'data' => $book
+        ]);
     }
 
     // Delete
