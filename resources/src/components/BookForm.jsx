@@ -1,14 +1,17 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import useAddBook from "../hooks/useAddBook";
 import Button from "./Button";
 
-const BookForm = () => {
+const BookForm = ({ book, onClose, onSave }) => {
     const { addBook } = useAddBook();
-    const [formData, setFormData] = useState({
-        title: "",
-        author: "",
-        year: "",
-    });
+    const [formData, setFormData] = useState(
+        book || {
+            title: "",
+            author: "",
+            year: "",
+        }
+    );
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,7 +23,12 @@ const BookForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addBook(formData);
+
+        if (formData.id) {
+            onSave(formData);
+        } else {
+            addBook(formData);
+        }
     };
 
     return (
@@ -30,6 +38,7 @@ const BookForm = () => {
                 <div className="p-3">
                     <label className="text-gray-700 mr-5">Judul</label>
                     <input
+                        className="h-10 border border-gray-300 rounded-lg"
                         type="text"
                         name="title"
                         value={formData.title}
@@ -40,6 +49,7 @@ const BookForm = () => {
                 <div className="p-3 border-y">
                     <label className="text-gray-700 mr-5">Penulis</label>
                     <input
+                        className="h-10 border border-gray-300 rounded-lg"
                         type="text"
                         name="author"
                         value={formData.author}
@@ -50,6 +60,7 @@ const BookForm = () => {
                 <div className="p-3 mb-10 border-b">
                     <label className="text-gray-700 mr-5">Tahun</label>
                     <input
+                        className="h-10 border border-gray-300 rounded-lg"
                         type="number"
                         name="year"
                         value={formData.year}
@@ -58,12 +69,28 @@ const BookForm = () => {
                     />
                 </div>
 
-                <Button type="button" variant="edited" onClick={handleSubmit}>
-                    Simpan
-                </Button>
+                <div className="flex flex-row gap-2 justify-center">
+                    <Button type="button" variant="deleted" onClick={onClose}>
+                        Batal
+                    </Button>
+
+                    <Button
+                        type="button"
+                        variant="edited"
+                        onClick={handleSubmit}
+                    >
+                        Simpan
+                    </Button>
+                </div>
             </form>
         </div>
     );
+};
+
+BookForm.propTypes = {
+    book: PropTypes.object,
+    onClose: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
 };
 
 export default BookForm;

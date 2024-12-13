@@ -1,18 +1,23 @@
 import Profile from "../components/Profile";
 import Table from "../components/Table";
+import Footer from "../components/Footer";
 
 const Home = () => {
     return (
-        <div className="h-screen justify-center items-center">
-            <div className="flex flex-row justify-between h-full w-full">
-                <div className="bg-primary-dark w-3/12">
-                    <Profile />
+        <>
+            <div className="bg-primary-custom flex flex-col h-full">
+                <div className="flex flex-row justify-between">
+                    <div className="bg-primary-dark w-3/12 h-4/5 rounded-xl ml-4 mt-3">
+                        <Profile />
+                    </div>
+                    <div className="w-screen">
+                        <Table />
+                    </div>
                 </div>
-                <div className="w-full bg-primary-custom">
-                    <Table />
-                </div>
+
+                <Footer />
             </div>
-        </div>
+        </>
     );
 };
 

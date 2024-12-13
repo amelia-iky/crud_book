@@ -14,7 +14,7 @@ const TableBook = () => {
 
     return (
         <>
-            <div className="shadow-lg border border-gray-200 text-center m-10">
+            <div className="shadow-lg border rounded-lg border-gray-200 text-center m-10">
                 <h1 className="text-4xl p-4">Data Buku</h1>
             </div>
 
@@ -54,23 +54,7 @@ const TableBook = () => {
                                         <td className="py-2">{book.year}</td>
                                         <td className="py-2">
                                             <span className="flex gap-2 justify-center">
-                                                {/* Form edit */}
-                                                <Button
-                                                    type="button"
-                                                    variant="edited"
-                                                    onClick={() => {
-                                                        editBook(book.id, {
-                                                            title: book.title,
-                                                            author: book.author,
-                                                            year: book.year,
-                                                        });
-                                                        setShowForm(true);
-                                                    }}
-                                                >
-                                                    Edit
-                                                </Button>
-
-                                                {/* Form add */}
+                                                {/* Form delete */}
                                                 <Button
                                                     type="button"
                                                     variant="deleted"
@@ -87,6 +71,18 @@ const TableBook = () => {
                                                 >
                                                     Hapus
                                                 </Button>
+
+                                                {/* Form edit */}
+                                                <Button
+                                                    type="button"
+                                                    variant="edited"
+                                                    onClick={() => {
+                                                        setEditingBook(book);
+                                                        setShowForm(true);
+                                                    }}
+                                                >
+                                                    Edit
+                                                </Button>
                                             </span>
                                         </td>
                                     </tr>
@@ -97,7 +93,7 @@ const TableBook = () => {
                                         colSpan="5"
                                         className="text-center py-2"
                                     >
-                                        Data buku kosong
+                                        Data buku kosong . . .
                                     </td>
                                 </tr>
                             )}
